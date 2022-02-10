@@ -112,6 +112,7 @@ def create_training_samples(json_loc_file, file_out_nm='train_data', num_splits=
 
         del full_data
         del observations
+        observations = []
 
 
 def create_tokenized_obs(input_list, num_toks=500, offset=250):
