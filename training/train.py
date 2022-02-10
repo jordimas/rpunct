@@ -39,7 +39,7 @@ def prepare_data():
     In addition constraints label space to only labels we care about
     """
     token_data = load_datasets(['yelp_train.txt_1.txt', 'yelp_train.txt_2.txt', 'yelp_train.txt_3.txt', 'yelp_train.txt_4.txt'])
-    clean_up_labels(token_data, valid_labels)
+    clean_up_labels(token_data, VALID_LABELS)
     eval_set = token_data[-int(len(token_data) * 0.10):]
     train_set = token_data[:int(len(token_data) * 0.90)]
     create_text_file(train_set, 'rpunct_train_set.txt')
