@@ -28,10 +28,12 @@ def download_df(dir_path=''):
     import tensorflow_datasets as tfds
     data_type = ['train', 'test']
     ds = tfds.load('yelp_polarity_reviews', split=data_type, shuffle_files=True)
+    idx = 0
     for i in ds:
         i = tfds.as_dataframe(i)
-        csv_path = os.path.join(dir_path, f'yelp_polarity_reviews_{i}.csv')
+        csv_path = os.path.join(dir_path, f'yelp_polarity_reviews_{data_type[idx]}.csv')
         i.to_csv(csv_path, index=False)
+        idx += 1
 
 
 def create_record(row):
