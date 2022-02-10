@@ -38,7 +38,7 @@ def prepare_data():
     Prepares data from Original text into Connnl formatted datasets ready for training
     In addition constraints label space to only labels we care about
     """
-    token_data = load_datasets(['telp_train_1.txt', 'telp_train_2.txt', 'telp_train_3.txt', 'telp_train_4.txt'])
+    token_data = load_datasets(['yelp_train.txt_1.txt', 'yelp_train.txt_2.txt', 'yelp_train.txt_3.txt', 'yelp_train.txt_4.txt'])
     clean_up_labels(token_data, valid_labels)
     eval_set = token_data[-int(len(token_data) * 0.10):]
     train_set = token_data[:int(len(token_data) * 0.90)]
@@ -51,7 +51,7 @@ def load_datasets(dataset_paths):
     Given a list of data paths returns a single data object containing all data slices
     """
     token_data = []
-    for d_set in [dataset_paths]:
+    for d_set in dataset_paths:
         with open(d_set, 'r') as fp:
             data_slice = json.load(fp)
         token_data.extend(data_slice)
