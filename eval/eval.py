@@ -20,7 +20,7 @@ def train_model():
 if __name__ == "__main__":
     print(f"Evaluation")
 
-    VALID_LABELS = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O"
+    VALID_LABELS = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
     #valid_labels = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
     model = NERModel("bert", "outputs/", labels=VALID_LABELS,
                           args={"silent": True, "max_seq_length": 512})
