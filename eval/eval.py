@@ -8,4 +8,5 @@ if __name__ == "__main__":
                           args={"silent": True, "max_seq_length": 512})
 
 
-    model.eval_model("rpunct_test_set.txt", output_dir = "eval_model/")
+    result = model.eval_model("rpunct_test_set.txt", output_dir = "eval_model/")
+    print(f"result: {result}")
