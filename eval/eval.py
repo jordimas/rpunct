@@ -4,7 +4,7 @@ if __name__ == "__main__":
     print(f"Evaluation")
 
     valid_labels = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
-    model = NERModel("bert", "felflare/bert-restore-punctuation", labels=valid_labels,
+    model = NERModel("bert", "outputs/", labels=valid_labels,
                           args={"silent": True, "max_seq_length": 512})
 
 
