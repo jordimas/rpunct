@@ -3,6 +3,7 @@ from simpletransformers.ner import NERModel
 if __name__ == "__main__":
     print(f"Evaluation")
 
+    self.valid_labels = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
     self.model = NERModel("bert", "felflare/bert-restore-punctuation", labels=self.valid_labels,
                           args={"silent": True, "max_seq_length": 512})
 
