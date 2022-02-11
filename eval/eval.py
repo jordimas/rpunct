@@ -28,6 +28,6 @@ if __name__ == "__main__":
     result = model.eval_model("rpunct_test_set.txt", output_dir = "eval_model/")
     #print(f"result: {result}")
 
-    with open('eval-results.txt', 'w') as fp:
-        fp.write(result)
+#    with open('eval-results.txt', 'w') as fp:
+#        fp.write(result)
 
