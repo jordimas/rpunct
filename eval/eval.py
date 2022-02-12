@@ -25,7 +25,14 @@ if __name__ == "__main__":
                           args={"silent": True, "max_seq_length": 512})
 
 
-    result = model.eval_model("rpunct_test_set.txt", output_dir = "eval_model/")
+    result = model.eval_model("rpunct_test_set.txt", output_dir = "eval-localmodel/")
+
+    model = NERModel("bert", "felflare/bert-restore-punctuation", labels=VALID_LABELS,
+                          args={"silent": True, "max_seq_length": 512})
+
+
+    result = model.eval_model("rpunct_test_set.txt", output_dir = "eval-hf/")
+    
     #print(f"result: {result}")
 
 #    with open('eval-results.txt', 'w') as fp:
