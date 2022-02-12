@@ -160,5 +160,5 @@ if __name__ == "__main__":
     while True:
         text = input("text:")
     # predict text and print
-        punctuated = punct_model.punctuate(test_sample)
+        punctuated = punct_model.punctuate(text)
         print(punctuated)
