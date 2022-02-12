@@ -40,7 +40,8 @@ def prepare_data():
     Prepares data from Original text into Connnl formatted datasets ready for training
     In addition constraints label space to only labels we care about
     """
-    token_data = load_datasets(['yelp_train.txt_1.txt', 'yelp_train.txt_2.txt', 'yelp_train.txt_3.txt', 'yelp_train.txt_4.txt'])
+    token_data = load_datasets(['yelp_train.txt_1.txt', 'yelp_train.txt_2.txt', 'yelp_train.txt_3.txt', 'yelp_train.txt_4.txt',
+                                'yelp_train.txt_5.txt'])
     clean_up_labels(token_data, VALID_LABELS)
     eval_set = token_data[-int(len(token_data) * 0.10):]
     train_set = token_data[:int(len(token_data) * 0.90)]
