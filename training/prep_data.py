@@ -21,7 +21,7 @@ def create_train_datasets():
         create_rpunct_dataset(i, f"{name}_data.json")
         output_file_names.append(f"{df_name}_{split_nm}.txt")
         create_training_samples(f"{name}_data.json", f"{df_name}_{split_nm}.txt")
-        return output_file_names
+    return output_file_names
 
 
 def download_df(dir_path=''):
