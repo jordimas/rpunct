@@ -27,12 +27,6 @@ class RestorePuncts:
             - text (str): Text to punctuate, can be few words to as large as you want.
             - lang (str): Explicit language of input text.
         """
-        if not lang and len(text) > 10:
-            lang = detect(text)
-        if lang != 'en':
-            raise Exception(F"""Non English text detected. Restore Punctuation works only for English.
-            If you are certain the input is English, pass argument lang='en' to this function.
-            Punctuate received: {text}""")
 
         # plit up large text into bert digestable chunks
         splits = self.split_on_toks(text, self.wrds_per_pred, self.overlap_wrds)
