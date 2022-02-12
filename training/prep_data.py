@@ -9,13 +9,13 @@ import re
 import json
 import random
 import pandas as pd
-
+import logging
 
 def create_train_datasets():
     output_file_names = []
     download_df()
     for i in ['yelp_polarity_reviews_train.csv', 'yelp_polarity_reviews_test.csv']:
-        print(f"create_train_datasets {i}")
+        logging.info(f"create_train_datasets {i}")
         name = i.split(".")[0]
         split_nm = name.split("_")[-1]
         df_name = name.split("_")[0]
@@ -66,7 +66,7 @@ def create_record(row):
 
 
 def create_rpunct_dataset(orig_yelp_dataframe, rpunct_dataset_path='rpunct_data.json'):
-    print(f"create_rpunct_dataset: {rpunct_dataset_path}")
+    logging.info(f"create_rpunct_dataset: {rpunct_dataset_path}")
     df = pd.read_csv(orig_yelp_dataframe)
     # Filter to only positive examples
     df = df[df['label'] == 1].reset_index(drop=True)
@@ -115,7 +115,7 @@ def create_training_samples(json_loc_file, file_out_nm='train_data', num_splits=
         _round += 1
         #random.shuffle(observations)
 
-        print(f"create_training_samples:'{file_out_nm}_{_round}.txt'")
+        logging.info(f"create_training_samples:'{file_out_nm}_{_round}.txt'")
         with open(f'{file_out_nm}_{_round}.txt', 'w') as fp2:
             json.dump(observations, fp2)
 
@@ -146,5 +146,9 @@ def create_tokenized_obs(input_list, num_toks=500, offset=250):
     return appends
 
 if __name__ == "__main__":
+    logfile = 'prep_data.log'
+    if os.path.exists(logfile):
+        os.remove(logfile)
+    logging.basicConfig(filename=logfile, level=logging.DEBUG)
     output_file_names = create_train_datasets()
-    print(f"Created following files: {output_file_names}")
+    logging.info(f"Created following files: {output_file_names}")
