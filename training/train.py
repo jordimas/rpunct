@@ -32,7 +32,7 @@ def train_model():
 
     # # Train the model
     steps, tr_details = model.train_model('rpunct_train_set.txt')
-    model.eval_model("rpunct_test_set.txt", output_dir = "text_training/")
+    model.eval_model("rpunct_test_set.txt", output_dir = "test_training/")
     model.eval_model("rpunct_flores101_eval.txt", output_dir = "eval_training_flores/")
 
     return steps, tr_details
