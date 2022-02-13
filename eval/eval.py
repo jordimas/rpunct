@@ -26,11 +26,11 @@ if __name__ == "__main__":
 
     result, model_outputs, pred_list = model.eval_model("rpunct_test_set.txt", output_dir = "eval-localmodel/")
 
-    model = NERModel("bert", "felflare/bert-restore-punctuation", labels=VALID_LABELS,
-                          args={"silent": True, "max_seq_length": 512})
+#    model = NERModel("bert", "felflare/bert-restore-punctuation", labels=VALID_LABELS,
+#                          args={"silent": True, "max_seq_length": 512})
 
 
-    result = model.eval_model("rpunct_test_set.txt", output_dir = "eval-hf/")
+ #   result = model.eval_model("rpunct_test_set.txt", output_dir = "eval-hf/")
     
     #print(f"result: {result}")
 
