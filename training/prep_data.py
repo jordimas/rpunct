@@ -32,7 +32,7 @@ def create_record(row):
     pattern = re.compile("[\W_]+")
     new_obs = []
 
-    observation = eval(row).decode().replace('\\n', ' ').split()
+    observation = row.replace('\\n', ' ').split()
 
     for obs in observation:
         text_obs = obs.lower()
