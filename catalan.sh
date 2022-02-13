@@ -1,3 +1,3 @@
-grep "\.\|," tgt.txt  | grep '.\{230\}' > catalan.txt
-wc -l catalan.txt
-cp catalan.txt yelp_polarity_reviews_train.txt
+grep "\.\|," tgt.txt  | grep '.\{230\}' > catalan_train.txt
+wc -l catalan_train.txt
+
