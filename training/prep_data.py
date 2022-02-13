@@ -13,7 +13,7 @@ import logging
 
 def create_train_datasets():
     output_file_names = []
-    for i in ['catalan_train.txt', 'flores101.cat.txt']:
+    for i in ['catalan_train.txt', 'flores101_cat.txt']:
         logging.info(f"create_train_datasets {i}")
         name = i.split(".")[0]
         split_nm = name.split("_")[-1]

@@ -12,6 +12,7 @@ VALID_LABELS = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U'
 
 def e2e_train():
     prepare_data()
+    prepare_data_eval()
     steps, tr_details = train_model()
     print(f"Steps: {steps}; Train details: {tr_details}")
 
@@ -31,7 +32,7 @@ def train_model():
 
     # # Train the model
     steps, tr_details = model.train_model('rpunct_train_set.txt')
-    model.eval_model("rpunct_test_set.txt", output_dir = "eval_model/")
+    model.eval_model("rpunct_test_set.txt", output_dir = "eval_training/")
 
     return steps, tr_details
 
@@ -41,13 +42,19 @@ def prepare_data():
     Prepares data from Original text into Connnl formatted datasets ready for training
     In addition constraints label space to only labels we care about
     """
-    token_data = load_datasets(['yelp_train.txt_1.txt', 'yelp_train.txt_2.txt', 'yelp_train.txt_3.txt', 'yelp_train.txt_4.txt',
-                                'yelp_train.txt_5.txt'])
+    token_data = load_datasets(['catalan_train.txt_1.txt', 'catalan_train.txt_2.txt', 'catalan_train.txt_3.txt', 'catalan_train.txt_4.txt',
+                                'catalan_train.txt_5.txt'])
     clean_up_labels(token_data, VALID_LABELS)
     eval_set = token_data[-int(len(token_data) * 0.10):]
     train_set = token_data[:int(len(token_data) * 0.90)]
     create_text_file(train_set, 'rpunct_train_set.txt')
     create_text_file(eval_set, 'rpunct_test_set.txt')
+
+def prepare_data_eval():
+    token_data = load_datasets(['yelp_train.txt_1.txt', 'yelp_train.txt_2.txt', 'yelp_train.txt_3.txt', 'yelp_train.txt_4.txt',
+                                'yelp_train.txt_5.txt'])
+    clean_up_labels(token_data, VALID_LABELS)
+    create_text_file(token_data, 'rpunct_flores101_eval.txt')
 
 
 def load_datasets(dataset_paths):
