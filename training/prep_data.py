@@ -14,7 +14,7 @@ import logging
 def create_train_datasets():
     output_file_names = []
     download_df()
-    for i in ['yelp_polarity_reviews_train.txt', 'yelp_polarity_reviews_test.txt']:
+    for i in ['catalan_train.txt', 'yelp_polarity_reviews_test.txt']:
         logging.info(f"create_train_datasets {i}")
         name = i.split(".")[0]
         split_nm = name.split("_")[-1]
@@ -68,14 +68,6 @@ def create_record(row):
 
 def create_rpunct_dataset(orig_yelp_dataframe, rpunct_dataset_path, name):
     logging.info(f"create_rpunct_dataset: {rpunct_dataset_path}")
-    #df = pd.read_csv(orig_yelp_dataframe)
-    # Filter to only positive examples
-    #df = df[df['label'] == 1].reset_index(drop=True)
-    # Dataframe Shape
-    #print(f"Dataframe samples: {df.shape}")
-
-
-    #corpus = open(f"{name}-corpus.txt", 'w')
 
     with open(orig_yelp_dataframe) as file:
         lines = file.readlines()

@@ -30,7 +30,7 @@ def train_model():
                      labels=VALID_LABELS)
 
     # # Train the model
-    steps, tr_details = model.train_model('rpunct_train_set.txt', eval_data = 'rpunct_test_set.txt')
+    steps, tr_details = model.train_model('rpunct_train_set.txt')
     model.eval_model("rpunct_test_set.txt", output_dir = "eval_model/")
 
     return steps, tr_details
