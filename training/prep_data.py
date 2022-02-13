@@ -9,25 +9,27 @@ import re
 import json
 import random
 import pandas as pd
-
+import logging
 
 def create_train_datasets():
     output_file_names = []
     download_df()
-    for i in ['yelp_polarity_reviews_train.csv', 'yelp_polarity_reviews_test.csv']:
+    for i in ['yelp_polarity_reviews_train.txt', 'yelp_polarity_reviews_test.txt']:
+        logging.info(f"create_train_datasets {i}")
         name = i.split(".")[0]
         split_nm = name.split("_")[-1]
         df_name = name.split("_")[0]
-        create_rpunct_dataset(i, f"{name}_data.json")
+        create_rpunct_dataset(i, f"{name}_data.json", name)
         output_file_names.append(f"{df_name}_{split_nm}.txt")
         create_training_samples(f"{name}_data.json", f"{df_name}_{split_nm}.txt")
     return output_file_names
 
 
 def download_df(dir_path=''):
+    return
     import tensorflow_datasets as tfds
     data_type = ['train', 'test']
-    ds = tfds.load('yelp_polarity_reviews', split=data_type, shuffle_files=True)
+    ds = tfds.load('yelp_polarity_reviews', split=data_type, shuffle_files=False)
     idx = 0
     for i in ds:
         i = tfds.as_dataframe(i)
@@ -64,18 +66,27 @@ def create_record(row):
     return new_obs
 
 
-def create_rpunct_dataset(orig_yelp_dataframe, rpunct_dataset_path='rpunct_data.json'):
-    df = pd.read_csv(orig_yelp_dataframe)
+def create_rpunct_dataset(orig_yelp_dataframe, rpunct_dataset_path, name):
+    logging.info(f"create_rpunct_dataset: {rpunct_dataset_path}")
+    #df = pd.read_csv(orig_yelp_dataframe)
     # Filter to only positive examples
-    df = df[df['label'] == 1].reset_index(drop=True)
+    #df = df[df['label'] == 1].reset_index(drop=True)
     # Dataframe Shape
-    print(f"Dataframe samples: {df.shape}")
+    #print(f"Dataframe samples: {df.shape}")
 
-    all_records = []
-    for i in range(df.shape[0]):
-        orig_row = df['text'][i]
-        records = create_record(orig_row)
-        all_records.extend(records)
+
+    #corpus = open(f"{name}-corpus.txt", 'w')
+
+    with open(orig_yelp_dataframe) as file:
+        lines = file.readlines()
+
+        all_records = []
+        for line in lines:
+            print(line)
+            records = create_record(line)
+            all_records.extend(records)
+
+        #corpus.close()
 
     with open(rpunct_dataset_path, 'w') as fp:
         json.dump(all_records, fp)
@@ -105,8 +116,9 @@ def create_training_samples(json_loc_file, file_out_nm='train_data', num_splits=
             data_slice = full_data.iloc[i[0]:i[1], ]
             observations.append(data_slice.values.tolist())
         _round += 1
-        random.shuffle(observations)
+        #random.shuffle(observations)
 
+        logging.info(f"create_training_samples:'{file_out_nm}_{_round}.txt'")
         with open(f'{file_out_nm}_{_round}.txt', 'w') as fp2:
             json.dump(observations, fp2)
 
@@ -137,5 +149,9 @@ def create_tokenized_obs(input_list, num_toks=500, offset=250):
     return appends
 
 if __name__ == "__main__":
+    logfile = 'prep_data.log'
+    if os.path.exists(logfile):
+        os.remove(logfile)
+    logging.basicConfig(filename=logfile, level=logging.DEBUG)
     output_file_names = create_train_datasets()
-    print(f"Created following files: {output_file_names}")
+    logging.info(f"Created following files: {output_file_names}")
