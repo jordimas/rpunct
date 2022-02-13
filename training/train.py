@@ -26,6 +26,7 @@ def train_model():
                     use_cuda = True,
                      args={"overwrite_output_dir": True,
                            "num_train_epochs": 3,
+                           "save_steps" : 10000,
                            "max_seq_length": 512,
                            "lazy_loading": True},
                      labels=VALID_LABELS)
