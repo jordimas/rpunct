@@ -22,7 +22,7 @@ def train_model():
     """
     # Create a NERModel
     model = NERModel("bert", "bert-base-uncased",
-                    use_cuda = False,
+                    use_cuda = True,
                      args={"overwrite_output_dir": True,
                            "num_train_epochs": 3,
                            "max_seq_length": 512,
