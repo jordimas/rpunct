@@ -32,7 +32,8 @@ def train_model():
 
     # # Train the model
     steps, tr_details = model.train_model('rpunct_train_set.txt')
-    model.eval_model("rpunct_test_set.txt", output_dir = "eval_training/")
+    model.eval_model("rpunct_test_set.txt", output_dir = "text_training/")
+    model.eval_model("rpunct_flores101_eval.txt", output_dir = "eval_training_flores/")
 
     return steps, tr_details
 
@@ -51,8 +52,8 @@ def prepare_data():
     create_text_file(eval_set, 'rpunct_test_set.txt')
 
 def prepare_data_eval():
-    token_data = load_datasets(['yelp_train.txt_1.txt', 'yelp_train.txt_2.txt', 'yelp_train.txt_3.txt', 'yelp_train.txt_4.txt',
-                                'yelp_train.txt_5.txt'])
+    token_data = load_datasets(['flores101_cat.txt_1.txt', 'flores101_cat.txt_2.txt', 'flores101_cat.txt_3.txt', 'flores101_cat.txt_4.txt',
+                                'flores101_cat.txt_5.txt'])
     clean_up_labels(token_data, VALID_LABELS)
     create_text_file(token_data, 'rpunct_flores101_eval.txt')
 
