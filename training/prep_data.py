@@ -61,11 +61,8 @@ def create_rpunct_dataset(orig_yelp_dataframe, rpunct_dataset_path, name):
 
         all_records = []
         for line in lines:
-            print(line)
             records = create_record(line)
             all_records.extend(records)
-
-        #corpus.close()
 
     with open(rpunct_dataset_path, 'w') as fp:
         json.dump(all_records, fp)
