@@ -14,7 +14,7 @@ import logging
 def create_train_datasets():
     output_file_names = []
     download_df()
-    for i in ['catalan_train.txt', 'yelp_polarity_reviews_test.txt']:
+    for i in ['catalan_train.txt', 'flores101.cat.txt']:
         logging.info(f"create_train_datasets {i}")
         name = i.split(".")[0]
         split_nm = name.split("_")[-1]
@@ -23,19 +23,6 @@ def create_train_datasets():
         output_file_names.append(f"{df_name}_{split_nm}.txt")
         create_training_samples(f"{name}_data.json", f"{df_name}_{split_nm}.txt")
     return output_file_names
-
-
-def download_df(dir_path=''):
-    return
-    import tensorflow_datasets as tfds
-    data_type = ['train', 'test']
-    ds = tfds.load('yelp_polarity_reviews', split=data_type, shuffle_files=False)
-    idx = 0
-    for i in ds:
-        i = tfds.as_dataframe(i)
-        csv_path = os.path.join(dir_path, f'yelp_polarity_reviews_{data_type[idx]}.csv')
-        i.to_csv(csv_path, index=False)
-        idx += 1
 
 
 def create_record(row):
