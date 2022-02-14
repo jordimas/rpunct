@@ -156,6 +156,10 @@ if __name__ == "__main__":
         test_sample = fp.readlines()
     # predict text and print
     for line in test_sample:
+        line = line.strip()
+        if len(line) == 0:
+            continue
+
         print(f"source: '{line}'")
         punctuated = punct_model.punctuate(line)
         print(f"result: '{punctuated}'")
