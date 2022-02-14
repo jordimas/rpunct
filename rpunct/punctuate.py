@@ -152,7 +152,7 @@ class RestorePuncts:
 if __name__ == "__main__":
     punct_model = RestorePuncts(model="outputs/")
     # read test file
-    with open('../tests/sample_text.txt', 'r') as fp:
+    with open('tests/sample_text.txt', 'r') as fp:
         test_sample = fp.read()
     # predict text and print
     punctuated = punct_model.punctuate(test_sample)
