@@ -153,10 +153,10 @@ if __name__ == "__main__":
     punct_model = RestorePuncts(model="outputs/")
     # read test file
     with open('tests/sample_text.txt', 'r') as fp:
-        test_sample = fp.read()
+        test_sample = fp.readlines()
     # predict text and print
     for line in test_sample:
-        punctuated = punct_model.punctuate(line)
         print(f"source: '{line}'")
+        punctuated = punct_model.punctuate(line)
         print(f"result: '{punctuated}'")
         print("--")
