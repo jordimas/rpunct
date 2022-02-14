@@ -155,5 +155,8 @@ if __name__ == "__main__":
     with open('tests/sample_text.txt', 'r') as fp:
         test_sample = fp.read()
     # predict text and print
-    punctuated = punct_model.punctuate(test_sample)
-    print(punctuated)
+    for line in test_sample:
+        punctuated = punct_model.punctuate(line)
+        print(f"source: '{line}'")
+        print(f"result: '{puncuated}'")
+        print("--")
