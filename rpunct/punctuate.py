@@ -158,5 +158,5 @@ if __name__ == "__main__":
     for line in test_sample:
         punctuated = punct_model.punctuate(line)
         print(f"source: '{line}'")
-        print(f"result: '{puncuated}'")
+        print(f"result: '{punctuated}'")
         print("--")
