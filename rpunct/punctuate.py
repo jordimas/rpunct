@@ -147,20 +147,3 @@ class RestorePuncts:
         if punct_resp[-1].isalnum():
             punct_resp += "."
         return punct_resp
-
-
-if __name__ == "__main__":
-    punct_model = RestorePuncts(model="outputs/")
-    # read test file
-    with open('tests/sample_text.txt', 'r') as fp:
-        test_sample = fp.readlines()
-    # predict text and print
-    for line in test_sample:
-        line = line.strip()
-        if len(line) == 0:
-            continue
-
-        print(f"source: '{line}'")
-        punctuated = punct_model.punctuate(line)
-        print(f"result: '{punctuated}'")
-        print("--")
