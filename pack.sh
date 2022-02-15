@@ -6,4 +6,4 @@ cp outputs/* $OUTDIR/outputs
 cp rpunct/punctuate.py $OUTDIR
 cp tests/* $OUTDIR
 cp eval/prompt.py $OUTDIR
-echo pushd $OUTDIR && zip ../rpunct-ca.zip -r * && popd
+pushd $OUTDIR && zip ../rpunct-ca.zip -r * && popd
