@@ -10,7 +10,7 @@ from simpletransformers.ner import NERModel
 from punctuate import RestorePuncts
 
 if __name__ == "__main__":
-    with open('tests/sample_text.txt', 'r') as fp:
+    with open('sample_text.txt', 'r') as fp:
         test_sample = fp.readlines()
 
     punct_model = RestorePuncts(model="outputs/")
