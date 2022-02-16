@@ -13,7 +13,7 @@ from punctuate import RestorePuncts
 if __name__ == "__main__":
     start_time = datetime.datetime.now()
 
-    with open('sample_text.txt', 'r') as fp:
+    with open('inference/sample_text.txt', 'r') as fp:
         test_sample = fp.readlines()
 
     punct_model = RestorePuncts(model="outputs/")
