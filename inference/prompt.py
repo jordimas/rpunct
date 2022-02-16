@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import datetime
 
 sys.path.append('rpunct/')
 
