@@ -10,7 +10,7 @@ from simpletransformers.ner import NERModel
 
 
 class RestorePuncts:
-    def __init__(self, wrds_per_pred=250, model = "felflare/bert-restore-punctuation"):
+    def __init__(self, wrds_per_pred=250, model = "outputs/"):
         self.wrds_per_pred = wrds_per_pred
         self.overlap_wrds = 30
         self.valid_labels = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
@@ -131,6 +131,7 @@ class RestorePuncts:
         thus punctuating it.
         """
         punct_resp = ""
+        punctuation = set([',', '.' ,'!', ':'])
         for i in full_pred:
             word, label = i
             if label[-1] == "U":
@@ -139,6 +140,10 @@ class RestorePuncts:
                 punct_wrd = word
 
             if label[0] != "O":
+                # JORDI: If it has punctuation, remove it
+                if punct_wrd[-1] in punctuation:
+                    punct_wrd = punct_wrd[:-1]
+
                 punct_wrd += label[0]
 
             punct_resp += punct_wrd + " "
