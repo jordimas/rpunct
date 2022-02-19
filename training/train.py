@@ -22,7 +22,7 @@ def train_model():
     Trains simpletransformers model
     """
     # Create a NERModel
-    model = NERModel("bert", "bert-base-uncased",
+    model = NERModel("roberta", "BSC-TeMU/roberta-base-ca",
                     use_cuda = True,
                      args={"overwrite_output_dir": True,
                            "num_train_epochs": 3,
