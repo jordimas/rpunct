@@ -13,7 +13,8 @@ class RestorePuncts:
     def __init__(self, wrds_per_pred=250, model = "outputs/"):
         self.wrds_per_pred = wrds_per_pred
         self.overlap_wrds = 30
-        self.valid_labels = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
+#        self.valid_labels = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
+        self.valid_labels = ['OU', 'OO', ',O', ',U']
         self.model = NERModel("roberta", model,
                               labels=self.valid_labels,
                               use_cuda = False,
@@ -139,16 +140,16 @@ class RestorePuncts:
             else:
                 punct_wrd = word
 
-            if label[0] != "O":
-                # JORDI: If it has punctuation, remove it
-                if punct_wrd[-1] in punctuation:
-                    punct_wrd = punct_wrd[:-1]
-
-                punct_wrd += label[0]
+            # JORDI: If it has punctuation, remove it
+#            if label[0] != "O":
+#                if punct_wrd[-1] in punctuation:
+#                    punct_wrd = punct_wrd[:-1]
+#
+#                punct_wrd += label[0]
 
             punct_resp += punct_wrd + " "
         punct_resp = punct_resp.strip()
         # Append trailing period if doesnt exist.
-        if punct_resp[-1].isalnum():
-            punct_resp += "."
+#        if punct_resp[-1].isalnum():
+#            punct_resp += "."
         return punct_resp

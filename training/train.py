@@ -7,7 +7,8 @@ __email__ = "daulet.nurmanbetov@gmail.com"
 import json
 from simpletransformers.ner import NERModel
 
-VALID_LABELS = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
+#VALID_LABELS = ['OU', 'OO', '.O', '!O', ',O', '.U', '!U', ',U', ':O', ';O', ':U', "'O", '-O', '?O', '?U']
+VALID_LABELS = ['OU', 'OO', ',O', ',U']
 
 
 def e2e_train():
